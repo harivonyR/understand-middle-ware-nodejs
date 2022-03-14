@@ -21,7 +21,7 @@ app.get('/users', auth ,(req,res,next)=>{
 
 // Middle-ware Definition
 function logger(req,res,next){
-    console.log("Log")
+    console.log("URL log : "+req.originalUrl)
     next()
 }
 
@@ -29,6 +29,7 @@ function auth(req,res,next){
     if(req.query.admin ==="true"){
         console.log("[ok] Auth")
         next()
+        return
     }
     else{
         res.send('Access denied')
@@ -36,6 +37,5 @@ function auth(req,res,next){
     }
 }
 
-
 // Start server
-app.listen(3000,()=>console.log("Server started"))
+app.listen(3000,()=>console.log("Server started\n----------"))
